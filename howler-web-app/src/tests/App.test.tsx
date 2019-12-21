@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import App from 'app/App';
+import ChatPage from 'app/ChatPage';
 
 test('renders without crashing', () => {
-  const app = render(<App />);
+  const app = render(<ChatPage />);
   app.unmount();
 });
