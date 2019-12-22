@@ -1,8 +1,8 @@
-import { SubscribeMessage, MessageBody, ConnectedSocket, OnGatewayConnection, WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
+import { SubscribeMessage, MessageBody, WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
 import { Server } from 'socket.io';
 
 @WebSocketGateway()
-export class EventsController{
+export class SocketController{
     
     @WebSocketServer() server : Server
 
