@@ -40,7 +40,8 @@ const ChatPage: React.FC = () => {
     });
 
     useEffect(() => {
-        const eventHandler = (message: NewMessage) => {
+        const eventHandler = (messages: NewMessage[]) => {
+            const message = messages[0];
             setChats(currentChats =>
                 currentChats.map((chat: Chat) => {
                     if(chat.chatName !== message.chatName){
