@@ -1,0 +1,16 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "howler",
+    "password": "howler",
+    "database": "Howler",
+    "entities": ["./dist/entity/*.entity.js"],
+    "migrationsTableName": "__migration_history",
+    "migrations": ["dist/migration/*.js"],
+    "cli": {
+        "entitiesDir": "src/entity",
+        "migrationsDir": "dist/migration"
+    },
+    "synchronize": true
+}

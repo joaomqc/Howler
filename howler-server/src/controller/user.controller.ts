@@ -1,12 +1,12 @@
 import { Controller, Body, HttpException, HttpStatus, Post } from '@nestjs/common';
-import UserRepository from '../repository/user.repository';
 import LoginInputModel from 'src/inputModel/login.input';
 import RegisterInputModel from 'src/inputModel/register.input';
-import User from 'src/model/user';
+import User from 'src/model/user.model';
+import { UserService } from '../user/user.service';
 
 @Controller('user')
 export class UserController {
-    constructor(private readonly userRepository: UserRepository) {}
+    constructor(private readonly userRepository: UserService) {}
 
     @Post('login')
     async login(@Body() request: LoginInputModel): Promise<string> {
