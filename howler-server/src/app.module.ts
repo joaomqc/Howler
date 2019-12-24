@@ -1,22 +1,31 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UserController } from './controller/user.controller';
-import { SocketController } from './controller/socket.gateway';
+import { UserController } from './user/user.controller';
+import { SocketController } from './socket/socket.gateway';
 import { UserModule } from './user/user.module';
 import * as ormData from '../ormconfig.json';
 import { User } from './entity/user.entity';
+import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot({
-    type: 'postgres',
-    host: ormData.host,
-    port: ormData.port,
-    username: ormData.username,
-    password: ormData.password,
-    database: ormData.database,
-    entities: [User]
-  }), UserModule],
-  controllers: [UserController],
-  providers: [SocketController],
+    imports: [
+        TypeOrmModule.forRoot({
+            type: 'postgres',
+            host: ormData.host,
+            port: ormData.port,
+            username: ormData.username,
+            password: ormData.password,
+            database: ormData.database,
+            entities: [User]
+        }),
+        ConfigModule.forRoot({
+            isGlobal: true
+        }),
+        UserModule,
+        AuthModule
+    ],
+    controllers: [UserController],
+    providers: [SocketController]
 })
 export class AppModule {}

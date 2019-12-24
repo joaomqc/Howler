@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from '../entity/user.entity';
+import { User } from 'src/entity/user.entity';
 import { Repository } from 'typeorm';
-import { hash, compare } from 'bcrypt';
-import ModelUser from '../model/user.model';
+import { hash } from 'bcrypt';
+import { NewUser, User as UserModel } from '../model/user.model';
 
 @Injectable()
 export class UserService {
@@ -15,21 +15,15 @@ export class UserService {
         private readonly userRepository: Repository<User>
     ){}
 
-    public async login(username: string, password: string): Promise<boolean> {
-        if(username === 'admin' && password === 'admin'){
-            return true;
-        }
-
-        const user = await this.userRepository.findOne({
+    public async findById(userId: string): Promise<UserModel> {
+        return await this.userRepository.findOne({
             where: {
-                username: username
+                userId: userId
             }
         });
-
-        return !!user && await compare(password, user.password);
     }
 
-    public async register(user: ModelUser): Promise<boolean> {
+    public async register(user: NewUser): Promise<boolean> {
         const count = await this.userRepository.count({
             where: {
                 username: user.username

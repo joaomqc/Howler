@@ -10,6 +10,6 @@ export class User {
     @Column({ length: 256, type: 'varchar' })
     email: string
 
-    @Column({ length: 256, type: 'varchar' })
+    @Column({ length: 256, type: 'varchar', select: false })
     password: string
 }
