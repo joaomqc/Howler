@@ -5,12 +5,12 @@
     "username": "howler",
     "password": "howler",
     "database": "Howler",
-    "entities": ["./dist/entity/*.entity.js"],
+    "entities": ["./dist/src/entity/*.entity.js"],
     "migrationsTableName": "__migration_history",
     "migrations": ["dist/migration/*.js"],
     "cli": {
-        "entitiesDir": "src/entity",
-        "migrationsDir": "dist/migration"
+        "entitiesDir": "src/entity/",
+        "migrationsDir": "migration"
     },
     "synchronize": true
 }

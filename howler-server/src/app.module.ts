@@ -7,6 +7,9 @@ import * as ormData from '../ormconfig.json';
 import { User } from './entity/user.entity';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
+import { Conversation } from './entity/conversation.entity';
+import { Message } from './entity/message.entity';
+import { Participant } from './entity/participant.entity';
 
 @Module({
     imports: [
@@ -17,7 +20,12 @@ import { AuthModule } from './auth/auth.module';
             username: ormData.username,
             password: ormData.password,
             database: ormData.database,
-            entities: [User]
+            entities: [
+                Conversation,
+                Message,
+                Participant,
+                User
+            ]
         }),
         ConfigModule.forRoot({
             isGlobal: true
